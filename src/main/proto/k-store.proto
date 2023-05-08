@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "org.brightly";
+option java_outer_classname = "KStoreGrpcProto";
+
+package kafka;
+
+service KStoreGrpc {
+    rpc ReadAll (google.protobuf.Empty) returns (MessageResponse) {}
+    rpc produceEvents(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
+message MessageResponse {
+    repeated KeyValueReply key_values = 1;
+}
+
+message KeyValueReply {
+    string key = 1;
+    string value = 2;
+}
